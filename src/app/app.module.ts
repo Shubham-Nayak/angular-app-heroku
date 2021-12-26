@@ -13,6 +13,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import * as $ from 'jquery';
 import { ListCertificateComponent } from './certificates/list-certificate/list-certificate.component';
 import { AddCertificateComponent } from './certificates/add-certificate/add-certificate.component';
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
 
 
 
@@ -26,7 +27,8 @@ import { AddCertificateComponent } from './certificates/add-certificate/add-cert
     ListQuestionnaireComponent,
     AddQuestionnaireComponent,
     ListCertificateComponent,
-    AddCertificateComponent
+    AddCertificateComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

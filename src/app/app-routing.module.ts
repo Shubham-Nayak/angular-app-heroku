@@ -6,13 +6,17 @@ import { AddQuestionnaireComponent } from './questionnaire/add-questionnaire/add
 import { ListCertificateComponent } from './certificates/list-certificate/list-certificate.component';
 import { AddCertificateComponent } from './certificates/add-certificate/add-certificate.component';
 
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
 
 
 const routes: Routes = [
   { path: 'questionnaire', component: ListQuestionnaireComponent },
   { path: 'add-questionnaire', component: AddQuestionnaireComponent },
   { path: 'certificate', component: ListCertificateComponent },
-  { path: 'add-certificate', component: AddCertificateComponent }
+  { path: 'add-certificate', component: AddCertificateComponent },
+  
+  { path: '', component: DashboardComponent },
+  { path: 'home', component: DashboardComponent },
 
 
 ];
