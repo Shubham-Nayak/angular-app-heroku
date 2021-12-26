@@ -96,12 +96,13 @@
                               </select>
                             </div>
   
-                            <div *ngIf='question.get("question_type").value=="1"'>
-                              <div class="form-group form-default  row">
-                                <textarea class="" id="subjective_answer" #subjective_answer
-                                  formControlName="subjective_answer" rows="3" placeholder="Type Answer Here."
-                                  [ngClass]="{'is-invalid': (submitted || question.controls.subjective_answer.touched || 
-                                    question.controls.subjective_answer.dirty) && !question.controls.subjective_answer.valid }"></textarea>
+                            <div *ngIf='question.get("question_type").value=="1"'  class="col-md-12">
+                               
+                              <div class="form-group form-default  ">
+                                <textarea class="form-control" id="floatingTextarea2" style="height: 100px" id="subjective_answer" #subjective_answer
+                                formControlName="subjective_answer" placeholder="Type Answer Here."
+                                [ngClass]="{'is-invalid': (submitted || question.controls.subjective_answer.touched || 
+                                  question.controls.subjective_answer.dirty) && !question.controls.subjective_answer.valid }"></textarea>
                                 <span class="invalid-feedback">
                                   <span *ngIf="question.controls.subjective_answer.errors?.required==true">
                                     Please enter answer
@@ -111,7 +112,7 @@
                               </div>
                             </div>
   
-                            <div *ngIf='question.get("question_type").value=="0"'>
+                            <div *ngIf='question.get("question_type").value=="0"' class="col-md-12">
                               <div formArrayName="options">
                                 <div class="form-group col-12 row"
                                   *ngFor="let item of question.get('options').controls; let j = index;"
@@ -148,7 +149,7 @@
                             </div>
   
   
-                            <div *ngIf='question.get("question_type").value=="2"'>
+                            <div *ngIf='question.get("question_type").value=="2"'  class="col-md-12">
                               <div formArrayName="options">
                                 <div class="form-group col-12 row"
                                   *ngFor="let item of question.get('options').controls; let j = index;"
