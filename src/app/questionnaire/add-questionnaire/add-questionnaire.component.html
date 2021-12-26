@@ -54,10 +54,12 @@
                     </div>
                   </div>
   
-                  <div class="question-list example-list" formArrayName="set_of_questions" >
+                  <div class="question-list example-list" formArrayName="set_of_questions" cdkDropList
+                    #doneList="cdkDropList" [cdkDropListData]="addquestionForm.get('set_of_questions').value"
+                    [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="onDrop($event)">
                     <div class="card example-box" id="option{{i}}"
                       *ngFor="let question of addquestionForm.get('set_of_questions')['controls'];let i = index; "
-                      [formGroupName]="i" >
+                      [formGroupName]="i" cdkDrag>
                       <div class="card-header">
                         <h5>Question {{i+1}}</h5>
                         <div class="card-header-right">

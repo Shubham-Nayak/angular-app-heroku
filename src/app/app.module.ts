@@ -9,7 +9,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { CKEditorModule } from 'ckeditor4-angular';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 import * as $ from 'jquery';
 
@@ -32,7 +33,8 @@ import * as $ from 'jquery';
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    CKEditorModule
+    CKEditorModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
