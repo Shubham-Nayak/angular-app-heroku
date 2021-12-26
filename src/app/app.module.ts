@@ -11,6 +11,8 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import * as $ from 'jquery';
+import { ListCertificateComponent } from './certificates/list-certificate/list-certificate.component';
+import { AddCertificateComponent } from './certificates/add-certificate/add-certificate.component';
 
 
 
@@ -22,7 +24,9 @@ import * as $ from 'jquery';
   declarations: [
     AppComponent,
     ListQuestionnaireComponent,
-    AddQuestionnaireComponent
+    AddQuestionnaireComponent,
+    ListCertificateComponent,
+    AddCertificateComponent
   ],
   imports: [
     BrowserModule,

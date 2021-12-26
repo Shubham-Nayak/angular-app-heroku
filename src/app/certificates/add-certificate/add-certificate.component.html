@@ -1,0 +1,158 @@
+<!-- Page-header start -->
+<div class="page-header">
+    <div class="page-block">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="page-header-title">
+            <h5 class="m-b-10">Certificates</h5>
+            <p class="m-b-0">Add certificate</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/"> <i class="fa fa-home"></i> </a>
+            </li>
+            <li class="breadcrumb-item"><a routerLink="/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a routerLink="/certificate">Certificate List</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page-header end -->
+  <div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- Page body start -->
+        <div class="page-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5>Add Certificate</h5>
+                  <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                </div>
+                <div class="card-block">
+                  <form name="theform" [formGroup]="addcertificateForm" #formDirective="ngForm"
+                    (ngSubmit)="onSubmit(addcertificateForm.value,formDirective)">
+                    <div class="form-group row">
+                      <label for="" class="col-md-2 col-sm-12 col-xs-12 col-form-label">Certificate Title<span
+                          class="star"><i class="fas fa-star-of-life"></i></span></label>
+                      <div class="col-md-10 col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" id="title" placeholder="Enter Certificate Title"
+                          formControlName="title" [ngClass]="{'is-invalid': (submitted || f.title.touched || 
+                    f.title.dirty) && !f.title.valid }">
+                        <span class="invalid-feedback">
+                          <span *ngIf="f.title.errors?.required">
+                            Certificate title is required
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+  
+                    <div class="form-group row">
+                      <label for="" class="col-md-2 col-sm-12 col-xs-12 col-form-label">Template</label>
+                      <div class="col-md-10 col-sm-12 col-xs-12">
+                        <select class="custom-select" (change)="changeTemplate($event.target.value)">
+                          <option selected="selected" value="">Please choose template</option>
+  
+                          <option *ngFor="let template of defaultTemplates[0];let i = index;" [value]="template.template">
+                            {{template.title}}
+                          </option>
+                        </select>
+  
+                      </div>
+                    </div>
+  
+  
+                    <div class="form-group row">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="variable pb-2 pt-2" data-toggle="modal" data-target="#dummy_design2" href="#"
+                          title="Certificate">Add Variables</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="" class="col-md-2 col-sm-12 col-xs-12 col-form-label">Certificate<span class="star"><i
+                            class="fas fa-star-of-life"></i></span></label>
+                      <div class="col-md-10 col-sm-12 col-xs-12">
+                        <ckeditor formControlName="template" [data]="template" [config]="config" [ngClass]="{'is-invalid': (submitted || f.template.touched || 
+                    f.template.dirty) && !f.template.valid }">
+  
+                        </ckeditor>
+                        <span class="invalid-feedback">
+                          <span *ngIf="f.template.errors?.required">
+                            Certificate template is required
+                          </span>
+                        </span>
+  
+                        <div id="cerfificate-errors">
+                        </div>
+  
+                      </div>
+                    </div>
+  
+  
+  
+                    <div class="row mt40">
+                      <div class="col-md-10 col-sm-10 col-xs-10 offset-md-2">
+                        <button type="submit" class="btn btn-primary" [disabled]="disableStatus"><i
+                            class="fas fa-save small"></i> Save </button>
+                        <a [routerLink]="['/elearning/certificate']" href="#" class="btn btn-info" role="button"><i
+                            class="fas fa-times small"></i>Cancel</a>
+                      </div>
+                    </div>
+                  </form>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- ================================================Model========================================== -->
+  
+      <div class="m6_popup">
+        <div class="modal fade in" id="dummy_design2" tabindex="-1" role="dialog" aria-labelledby="dummy_design2"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+  
+              <div class="modal-header">
+                <h6 class="modal-title"><b>Note: </b><span class="red">To add variable please follow below format:</span>
+                </h6>
+                <button type="button" class="close" id="closebutton" data-dismiss="modal" #closebutton>×</button>
+              </div>
+  
+              <div class="modal-body">
+                <div class="form-group row">
+                  <div class="col-sm-12 col-xs-12 tar">
+                    <label for="" class="col-form-label red text-center" id="myElem"> </label>
+                    <ul>
+  
+                      <li> <strong>{{start}}$username{{end}}&nbsp;</strong> - Name of user attempting the questionnaire
+                      </li>
+                      <li> <strong>{{start}}$score{{end}}&nbsp;</strong> - (in percentage) achieved for the entire course
+                      </li>
+                      <li> <strong>{{start}}$coursename{{end}}&nbsp;</strong> - Name of the course completed</li>
+                      <li> <strong>{{start}}$instructor{{end}}&nbsp;</strong> - Instructor’s name</li>
+                      <li> <strong>{{start}}$date{{end}}&nbsp;</strong> - date of completion of course</li>
+  
+  
+                    </ul>
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+      </div>
