@@ -1,0 +1,73 @@
+<!-- Page-header start -->
+<div class="page-header">
+    <div class="page-block">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="page-header-title">
+            <h5 class="m-b-10">Questionnaires</h5>
+            <p class="m-b-0">List of questionnaires</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/"> <i class="fa fa-home"></i> </a>
+            </li>
+            <li class="breadcrumb-item"><a  routerLink="/">Dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page-header end -->
+  <div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- Page-body start -->
+        <div class="page-body">
+          <div class="row">
+            <!-- Material statustic card start -->
+            <div class="col-xl-12 col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5>Questionnaire List</h5>
+                  <div class="card-header-right">
+                    <ul class="list-unstyled card-option " >
+                      <li><i class="fa fa fa-search open-card-option option-search"></i></li>
+                      <li><input class="form-control" type="text" name="search"  autocomplete="off" placeholder="title"></li>
+  
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-block table-border-style">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Title</th>
+                          <th>Updated at</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let questionnaire of questionnaireList; let i = index ">
+                          <th scope="row">{{i+1}}</th>
+                          <td> {{questionnaire.title}}</td>
+                          <td> {{questionnaire.updated_date}}</td>
+                          <td>@mdo</td>
+                        </tr>
+  
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
