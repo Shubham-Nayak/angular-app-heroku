@@ -35,8 +35,8 @@
                   <h5>Questionnaire List</h5>
                   <div class="card-header-right">
                     <ul class="list-unstyled card-option " >
-                      <li><i class="fa fa fa-search open-card-option option-search"></i></li>
-                      <li><input class="form-control" type="text" name="search"  autocomplete="off" placeholder="title"></li>
+                      <li><i class="fa fa fa-search " (click)="optionSearch($event.target)"></i></li>
+                      <li><input class="form-control" type="text" name="search"  [(ngModel)]="searchedKeyword"  autocomplete="off" placeholder="title"></li>
   
                     </ul>
                   </div>
@@ -53,7 +53,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let questionnaire of questionnaireList; let i = index ">
+                        <tr *ngFor="let questionnaire of questionnaireList|filter:searchedKeyword; let i = index ">
                           <th scope="row">{{i+1}}</th>
                           <td> {{questionnaire.title}}</td>
                           <td> {{questionnaire.updated_date}}</td>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-list-questionnaire',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListQuestionnaireComponent implements OnInit {
 
   questionnaireList: any;
-  // searchedKeyword: string;
+  searchedKeyword: string;
   constructor() { }
 
   postData=
@@ -164,7 +165,6 @@ export class ListQuestionnaireComponent implements OnInit {
         }
     }
   };
-  searchedKeyword="";
   ngOnInit(){
   
     this.questionnaireList= this.postData.data.questionnaire_list.questionnaire;
@@ -173,5 +173,25 @@ export class ListQuestionnaireComponent implements OnInit {
     console.log(this.questionnaireList);
 
   }
+
+  optionSearch(e) {
+    var $this = $(e);
+    if ($this.hasClass('fa-times')) {
+        $this.parents('.card-option').animate({
+            'width': '30px',
+           'height': '20px'
+
+        });
+        $(e).removeClass("fa-times").fadeIn('slow');
+        $(e).addClass("fa-search").fadeIn('slow');
+    } else {
+        $this.parents('.card-option').animate({
+            'width': '340px',
+           'height': '50px'
+        });
+        $(e).addClass("fa-times").fadeIn('slow');
+        $(e).removeClass("fa-search").fadeIn('slow');
+    }
+}
 
 }
