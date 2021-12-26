@@ -1,1 +1,202 @@
-<p>add-questionnaire works!</p>
+<!-- Page-header start -->
+<div class="page-header">
+    <div class="page-block">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="page-header-title">
+            <h5 class="m-b-10">Questionnaires</h5>
+            <p class="m-b-0">Add questionnaires</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/"> <i class="fa fa-home"></i> </a>
+            </li>
+            <li class="breadcrumb-item"><a routerLink="/">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item"><a routerLink="/questionnaire">Questionnaires</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page-header end -->
+  <div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- Page body start -->
+        <div class="page-body">
+          <div class="row">
+            <div class="col-md-12">
+                <form class="form-material" [formGroup]="addquestionForm" #formDirective="ngForm"
+                  (ngSubmit)="onSubmit(addquestionForm.value,formDirective)">
+                  <div class="card">
+                    <div class="card-block">
+                      <div>
+                        <input type="text" class="form-control" placeholder="Questionnaire Title"
+                          formControlName="questionnaire_name" [ngClass]="{'is-invalid': (submitted || f.questionnaire_name.touched || 
+                      f.questionnaire_name.dirty) && !f.questionnaire_name.valid }">
+                      <span class="invalid-feedback">
+                          <span *ngIf="addquestionForm.controls.questionnaire_name.errors?.required">
+                            Questionnaire Name is required
+                          </span>
+                      </span>
+  
+                        <span *ngIf="addquestionForm.controls.questionnaire_name.hasError('maxlength')" class="error">
+                          Maximum 500 characters allowed
+                        </span>
+  
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="question-list example-list" formArrayName="set_of_questions" >
+                    <div class="card example-box" id="option{{i}}"
+                      *ngFor="let question of addquestionForm.get('set_of_questions')['controls'];let i = index; "
+                      [formGroupName]="i" >
+                      <div class="card-header">
+                        <h5>Question {{i+1}}</h5>
+                        <div class="card-header-right">
+                          <ul class="list-unstyled card-option">
+                            <li><i class="fa fa fa-wrench open-card-option" (click)="opencardoption($event.target)"></i>
+                            </li>
+                            <li><i class="fa fa-window-maximize full-card" (click)="fullcard($event.target)"></i></li>
+                            <li><i class="fa fa-plus small" (click)="onAdd(i)" title="add"></i></li>
+                            <li><i class="fa  fa fa-copy" title="Edit" (click)="onDuplicate(question,i)"></i></li>
+                            <li><i class="fa fa-refresh reload-card" (click)="reloadcard($event,i)"></i></li>
+                            <li *ngIf="i>0"><i class="far fa-trash-alt small" title="Delete"
+                                (click)="removeMember(i)"></i></li>
+                          </ul>
+                        </div>
+                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+  
+                        <div class="card-block">
+                          <div class="form-group row">
+                            <div class="col-md-10 col-sm-12  form-default">
+                              <input type="text" placeholder="Question Title" formControlName="question_name"
+                                #question_name class="form-control" id="inputValidation" [ngClass]="{'is-invalid': (submitted || question.controls.question_name.touched || 
+                            question.controls.question_name.dirty) && 
+                            !question.controls.question_name.valid }">
+                              <span class="form-bar"></span>
+                              
+  
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                              <select name="select" class="form-control" formControlName="question_type" #question_type
+                                (change)='onOptionsSelected($event,question)'>
+                                <option selected="" value="0">Radio</option>
+                                <option value="2">Checkbox</option>
+                                <option value="1">Text</option>
+                              </select>
+                            </div>
+  
+                            <div *ngIf='question.get("question_type").value=="1"'>
+                              <div class="form-group form-default  row">
+                                <textarea class="" id="subjective_answer" #subjective_answer
+                                  formControlName="subjective_answer" rows="3" placeholder="Type Answer Here."
+                                  [ngClass]="{'is-invalid': (submitted || question.controls.subjective_answer.touched || 
+                                    question.controls.subjective_answer.dirty) && !question.controls.subjective_answer.valid }"></textarea>
+                                <span class="invalid-feedback">
+                                  <span *ngIf="question.controls.subjective_answer.errors?.required==true">
+                                    Please enter answer
+                                  </span>
+                                </span>
+                                
+                              </div>
+                            </div>
+  
+                            <div *ngIf='question.get("question_type").value=="0"'>
+                              <div formArrayName="options">
+                                <div class="form-group col-12 row"
+                                  *ngFor="let item of question.get('options').controls; let j = index;"
+                                  [formGroupName]="j">
+                                  <div class="form-check form-check-inline col-md-12">
+                                    <label class="form-check-label" for="inlineRadio1"><input type="radio"
+                                        class="form-check-input  'checkthis'+(i)" [id]="'radioid'+(i)+'-'+(j)"
+                                        formControlName="answer_status" #answer_status
+                                        [checked]="item.controls.answer_status.value == 1 ? true : false"
+                                        (change)="changeRadioValue($event,item,i,j)"></label>
+                                    <input type="text" class="form-control" placeholder="enter your options"
+                                      formControlName="answer" #answer id="inputValidation"
+                                      placeholder="Enter your text here" autocomplete="off" [ngClass]="{'is-invalid': (submitted || item.controls.answer.touched || 
+                                  item.controls.answer.dirty) && 
+                                  !item.controls.answer.valid }">
+                                    <label class="form-check-label" for="inlineRadio1" *ngIf="0 ? j > 0 : j>1"><a
+                                        href="javascript:void(0);" class="form-check-input" style="border: none;"
+                                        (click)="removeOptions(question.get('options'),j)" title="Delete"><i
+                                          class="far fa-trash-alt small"></i></a></label>
+  
+                                  </div>
+  
+                                </div>
+                                <span class="error " style="color:	#FF0000" id="options{{i}}">
+                                </span>
+                              </div>
+  
+                              <div class="col-md-12">
+                                <div class="add_form"><a href="javascript:void(0);"
+                                    (click)="addOption(question.get('options'));"><i class="fas fa-plus"></i> Add more
+                                    Option</a>
+                                </div>
+                              </div>
+                            </div>
+  
+  
+                            <div *ngIf='question.get("question_type").value=="2"'>
+                              <div formArrayName="options">
+                                <div class="form-group col-12 row"
+                                  *ngFor="let item of question.get('options').controls; let j = index;"
+                                  [formGroupName]="j">
+                                  <div class="form-check form-check-inline col-md-12">
+                                    <label class="form-check-label" for="inlineRadio1"><input type="checkbox"
+                                        class="form-check-input" formControlName="answer_status" #answer_status
+                                        (click)="changeValue($event,item,i)"></label>
+                                    <input type="text" class="form-control" placeholder="enter your options"
+                                      formControlName="answer" #answer id="inputValidation"
+                                      placeholder="Enter your text here" autocomplete="off" [ngClass]="{'is-invalid': (submitted || item.controls.answer.touched || 
+                                  item.controls.answer.dirty) && 
+                                  !item.controls.answer.valid }">
+                                    <label class="form-check-label" for="inlineRadio1" *ngIf="0 ? j > 0 : j>1"><a
+                                        href="javascript:void(0);" class="form-check-input" style="border: none;"
+                                        (click)="removeOptions(question.get('options'),j)" title="Delete"><i
+                                          class="far fa-trash-alt small"></i></a></label>
+  
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="add_form"><a href="javascript:void(0);"
+                                    (click)="addOption(question.get('options'));"><i class="fas fa-plus"></i> Add more
+                                    Option</a>
+                                </div>
+                              </div>
+                            </div>
+  
+  
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+  
+                  </div>
+                  <div class="row mt40">
+                    <div class="col-md-10 col-sm-10 col-xs-10 ">
+  
+                      <button class="btn waves-effect waves-light btn-success" type="submit" [disabled]="disableStatus"><i
+                          class="fas fa-save small"></i>Save</button>
+                      <a [routerLink]="['/questionnaires']" href="#" class="btn btn-info waves-light" role="button"><i
+                          class="fas fa-times small"></i>Cancel</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
