@@ -5817,7 +5817,7 @@ table tbody .border-bottom-info td {
 .pcoded[theme-layout="vertical"][vertical-placement="left"] .pcoded-content {
 	float: unset;
 	right: 0;
-	margin-top: -316px;
+
 }
 
 .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-header .pcoded-left-header,
@@ -9898,11 +9898,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 	.proj-progress-card .progress {
 		margin-bottom: 30px;
 	}
-	.pcoded[theme-layout="vertical"][vertical-placement="left"] .pcoded-content {
-		float: unset;
-		right: 0;
-		margin-top: -316px;
-	}
 }
 
 .prod-p-card i {
@@ -10718,11 +10713,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 @media only screen and (max-width: 992px) {
 	.login-block.offline-404 .auth-box {
 		margin-top: 45px;
-	}
-	.pcoded[theme-layout="vertical"][vertical-placement="left"] .pcoded-content {
-		float: unset;
-		right: 0;
-		margin-top: -316px;
 	}
 }
 
@@ -14283,6 +14273,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 	}
 	.add-task-card .to-do-list h6 span {
 		display: inline-block;
+	}
+}
+@media only screen and (min-width: 1280px) {
+	.pcoded[theme-layout="vertical"][vertical-placement="left"] .pcoded-content {
+		float: unset;
+		right: 0;
+			margin-top: -316px;
 	}
 }
 
