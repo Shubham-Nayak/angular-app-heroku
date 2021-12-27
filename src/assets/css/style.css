@@ -5817,6 +5817,7 @@ table tbody .border-bottom-info td {
 .pcoded[theme-layout="vertical"][vertical-placement="left"] .pcoded-content {
 	float: unset;
 	right: 0;
+	margin-top: -316px;
 }
 
 .pcoded[theme-layout="vertical"][vertical-nav-type="expanded"] .pcoded-header .pcoded-left-header,
