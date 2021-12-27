@@ -192,9 +192,9 @@ code {
 }
 
 @media only screen and (max-width: 575px) {
-	.card .card-header .card-header-right {
+	/* .card .card-header .card-header-right {
 		display: none;
-	}
+	} */
 }
 
 .card .card-header .card-header-right i {
