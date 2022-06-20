@@ -77,7 +77,6 @@ get f() { return this.addcertificateForm.controls;  }
 
   }
   getCertificate(){
-
     if (this.postData.code == 200) {
       this.defaultTemplates.push(this.postData.data.templateDetails.template_list);
       this.template =this.postData.data.templateDetails.template_list[0].template;
@@ -87,12 +86,14 @@ get f() { return this.addcertificateForm.controls;  }
 
     }
   }
+
   changeTemplate(event){
     console.log(event,'ele')
     this.template=event;
     console.log(this.template,'this.template')
 
   }
+  
   onSubmit(value,formDirective:FormGroupDirective) {
   
 
